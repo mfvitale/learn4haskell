@@ -325,7 +325,7 @@ True
 True
 
 >>> div 20 3  -- integral division
-18
+6
 
 >>> mod 20 3  -- integral division remainder
 2
