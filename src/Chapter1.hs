@@ -491,7 +491,7 @@ Implement a function that returns the last digit of a given number.
 -}
 -- DON'T FORGET TO SPECIFY THE TYPE IN HERE
 lastDigit :: Int -> Int
-lastDigit n = mod n 10
+lastDigit n = mod (abs n) 10
 
 
 {- |
@@ -556,9 +556,17 @@ Casual reminder about adding top-level type signatures for all functions :)
 -}
 mid :: Int -> Int -> Int -> Int
 mid x y z
+    | x == y && x == z = x
+    | x == y && x < z = x
+    | x == y && x > z = z
+    | y == z && y < x = x
+    | y == z && y > x = y
+    | z == x && z < y = y
+    | z == x && z > y = z
     | min y z < x && x < max y z = x
     | min x z < y && y < max x z = y
     | min x y < z && z < max x y = z
+    | otherwise = error "Sorry, something goes wrong!"
 
 {- |
 =⚔️= Task 8
@@ -670,7 +678,8 @@ You need to use recursion in this task. Feel free to return to it later, if you
 aren't ready for this boss yet!
 -}
 firstDigit :: Int -> Int
-firstDigit n = if n < 10 then n else firstDigit (div n 10)
+firstDigit n = let absoluteValue = abs n in if absoluteValue < 10 then absoluteValue else firstDigit (div absoluteValue 10)
+    
 
 
 {-
