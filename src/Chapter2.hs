@@ -862,6 +862,7 @@ list.
 🕯 HINT: Use the 'cycle' function
 -}
 rotate :: Int -> [Int] -> [Int]
+rotate x [] = []
 rotate x l = 
   let len = length l in
     drop x (take (len + x) (cycle l))
@@ -880,7 +881,10 @@ and reverses it.
   function, but in this task, you need to implement it manually. No
   cheating!
 -}
-rewind = error "rewind: Not Implemented!"
+rewind :: [a] -> [a]
+rewind [] = []
+rewind (x:xs) = (rewind xs) ++ (x : [])
+ 
 
 
 {-
